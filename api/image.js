@@ -1,4 +1,7 @@
+const got = require('got');
 const url = require('url');
+
+const sharp = require('sharp');
 
 module.exports = async (req, res) => {
     let images = ['2015-02-19_13-08-25_754.jpg',
@@ -8,7 +11,13 @@ module.exports = async (req, res) => {
     const { query } = url.parse(req.url, true);
 
     let randomImage = Math.floor(Math.random()*images.length);
+    let imageUrl = 'https://raw.githubusercontent.com/jason-dees/stuffonharold-images/main/' + images[randomImage];
+    const  buffer  = await got(imageUrl, {responseType: 'buffer', resolveBodyOnly: true});
+    const resizedBuffer = await sharp(buffer)
+        .resize(100)
+        .png()
+        .toBuffer();
     res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/json');
-    res.send("https://raw.githubusercontent.com/jason-dees/stuffonharold-images/main/" + images[randomImage] + query.width);
+    res.setHeader('Content-Type', 'image/png');
+    res.send(resizedBuffer);
 }
