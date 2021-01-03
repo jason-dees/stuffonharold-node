@@ -2,6 +2,8 @@
     "name": "stuffonharold-node",
     "version": "0.1.0",
     "scripts": {
-      "start:dev": "vercel dev"
+        "start:dev": "vercel dev"
+    },
+    "devDependencies": {
     }
 }
