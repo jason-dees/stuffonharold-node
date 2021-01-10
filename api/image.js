@@ -14,7 +14,14 @@ module.exports = async (req, res) => {
     res.send(finalBuffer);
 }
 
+const MAX_DIMENSION = 1000
+getDirectionDimension = (queryDimension, imageDimension) => {
+    const d = queryDimension <= 0 || queryDimension == undefined ? imageDimension : queryDimension;
+    return imageDimension > MAX_DIMENSION ? MAX_DIMENSION : imageDimension;
+}
+
 getFromAzureStorage = async (query) => {
+    // https://stuffonharoldimages.blob.core.windows.net/harold-images?restype=container&comp=list returns results in xml format
     const images = ['2015-02-19_13-08-25_754.jpg',
         '2015-02-21_12-47-51_131.jpg',
         '2015-02-27 11.12.24.jpg',
@@ -26,8 +33,9 @@ getFromAzureStorage = async (query) => {
     
         const imageDimensions = sizeOf(imageBuffer);
         const ratio = imageDimensions.width / imageDimensions.height;
-        const width = query.width <= 0 || query.width == undefined ? imageDimensions.width : query.width;
-        const height = query.height <= 0 || query.height == undefined ? imageDimensions.height : query.height;
+        const width = getDirectionDimension(query.width, imageDimensions.width);
+        const height = getDirectionDimension(query.height, imageDimensions.height);
+        
         const percentage = width / height > ratio
                 ? height / imageDimensions.height
                 : width / imageDimensions.width;
