@@ -1,9 +1,7 @@
-.harold-img{
-}
-#harolds {
+#harolds, harold-queue {
 	text-align: center;
 
-	.harold-img{
+	.harold-img, harold-img{
 		position: absolute;
 		width: 100%;
 		top: 0;
@@ -19,18 +17,18 @@
 		}
 	}
 
-	.harold-img:first-child img {
+	.harold-img:first-child img, harold-img:first-child img {
 		animation: .1s sharpen;
 	}
 
-	.harold-img.drag {
+	.harold-img.drag, harold-img.drag {
 		z-index: 20;
 		img{
 		background-color:#CCE6FF;
 		}
 	}
 
-	.harold-img {
+	.harold-img, harold-img {
 		height: 100%;
 
 		img {

@@ -5,12 +5,13 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <title>Stuff on Harold</title>
     <link rel="stylesheet" href="../index.css">
+    <style>
+    </style>
 </head>
 
 <body>
-    <div style="width:100%;" id="harolds">
-        <harold-img></harold-img>
-    </div>
+    <harold-queue id="harolds">
+    </harold-queue>
     <div class="drop-area left"></div>
     <div class="drop-area right"></div>
     <a id="stats">i</a>
@@ -50,13 +51,13 @@
             <td class="weight"></td>
         </tr>
     </template>
-    <script type="text/javascript" src="next/elements.js"></script>
-    <script type="text/javascript" src="../haroldstats.js"></script>
     <template id="harold-img">
-        <div>
-            <img />
-        </div>
+        <img />
     </template>
+    <template id="harold-queue">
+    </template>
+    <script type="text/javascript" src="elements.js"></script>
+    <script type="text/javascript" src="../haroldstats.js"></script>
 </body>
 
 </html>

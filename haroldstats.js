@@ -52,7 +52,7 @@
 		}
 	});
 
-	fetch("stuff.json")
+	fetch("/stuff.json")
 		.then(response => response.json())
 		.then(json => fillInStuff(json));
 })();
